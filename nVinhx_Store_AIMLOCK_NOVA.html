@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080a0f">
+<title>nVinhx Store | AIMLOCK NOVA</title>
+<style>
+:root{--bg:#07090d;--panel:#10151e;--panel2:#0b0f16;--silver:#eef4fc;--muted:#a7b4c5;--line:#344255;--blue:#b9d7ff;--glow:rgba(126,177,255,.18)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 50% -10%,#26364c 0,#0a0d13 38%,#050609 75%);color:var(--silver);font-family:Inter,Arial,Helvetica,sans-serif;line-height:1.5}
+.wrap{max-width:1100px;margin:auto;padding:18px 14px 44px}
+header{position:relative;overflow:hidden;text-align:center;padding:30px 16px 27px;border:1px solid #51647e;border-radius:24px;background:linear-gradient(140deg,rgba(37,52,73,.95),rgba(9,12,18,.98) 70%);box-shadow:0 0 36px var(--glow)}
+header:after{content:"";position:absolute;inset:-50%;background:linear-gradient(110deg,transparent 43%,rgba(255,255,255,.055) 49%,transparent 55%);transform:rotate(-8deg);pointer-events:none}
+.brandmark{display:grid;place-items:center;margin:0 auto 12px;width:68px;height:68px;border:2px solid var(--blue);border-radius:20px;background:#0b111b;color:white;font-weight:1000;font-size:25px;letter-spacing:1px;box-shadow:0 0 24px var(--glow)}
+.brand{margin:0;font-size:clamp(34px,8vw,62px);font-weight:1000;letter-spacing:3px;line-height:1.05;text-shadow:0 0 22px rgba(157,197,255,.18)}
+.brand span{color:var(--blue)}
+.subtitle{font-size:12px;letter-spacing:2px;color:var(--blue);font-weight:900;margin:12px 0 5px}
+.tagline{color:var(--muted);font-size:12px;letter-spacing:1px}
+.nav{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin:16px 0 22px}
+.nav a{color:var(--silver);text-decoration:none;border:1px solid var(--line);background:#101620;padding:9px 13px;border-radius:999px;font-size:12px;font-weight:800}
+.nav a:hover{border-color:var(--blue);box-shadow:0 0 14px var(--glow)}
+.section{margin-top:23px}
+.section-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:17px;letter-spacing:1px;text-transform:uppercase}
+.section-title:before{content:"";height:22px;width:4px;border-radius:8px;background:linear-gradient(#fff,#7e9fca);box-shadow:0 0 12px var(--glow)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:12px}
+.card{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:14px;border:1px solid var(--line);border-radius:17px;padding:16px;background:linear-gradient(150deg,var(--panel),var(--panel2));min-height:142px;transition:transform .18s,border-color .18s,box-shadow .18s}
+.card:hover{transform:translateY(-2px);border-color:#7088a7;box-shadow:0 8px 24px rgba(0,0,0,.22)}
+.cardtop{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.name{font-weight:850;font-size:14px}
+.desc{font-size:11px;color:var(--muted);margin-top:4px}
+.price{white-space:nowrap;color:white;font-weight:950;font-size:15px;text-align:right}
+.price small{display:block;color:var(--blue);font-size:10px;letter-spacing:.6px}
+.choose{width:100%;border:1px solid #b6d2f7;background:linear-gradient(135deg,#e6f1ff,#9ebce3);color:#07101d;border-radius:10px;padding:10px 12px;font-size:12px;font-weight:950;letter-spacing:.6px;cursor:pointer}
+.choose:hover{filter:brightness(1.08)}
+.badge{font-size:9px;letter-spacing:1px;color:#d5e7ff;border:1px solid #415875;border-radius:6px;padding:3px 6px;display:inline-block;margin-bottom:7px}
+.callout{border:1px solid #3d5069;background:rgba(15,22,32,.82);border-radius:15px;padding:14px 16px;color:var(--muted);font-size:12px}
+footer{text-align:center;color:var(--muted);margin-top:30px;padding:22px 10px;border-top:1px solid var(--line);font-size:11px;letter-spacing:1px}
+footer strong{display:block;color:#f2f7ff;font-size:19px;letter-spacing:3px;margin-bottom:4px}
+.overlay{display:none;position:fixed;inset:0;z-index:20;background:rgba(0,0,0,.76);backdrop-filter:blur(9px);padding:18px;align-items:center;justify-content:center}
+.overlay.show{display:flex}
+.modal{width:min(100%,440px);border:1px solid #60738d;border-radius:22px;background:linear-gradient(150deg,#182231,#090c12);padding:21px;box-shadow:0 0 45px rgba(100,158,230,.18)}
+.modal-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.modal h2{margin:0;font-size:20px}
+.close{border:1px solid var(--line);background:#111823;color:white;border-radius:9px;padding:6px 10px;font-size:18px;cursor:pointer}
+.selected{margin:16px 0;padding:14px;border:1px solid var(--line);border-radius:13px;background:#0a0e15}
+.selected .product{font-weight:900}
+.selected .amount{font-size:23px;font-weight:1000;color:var(--blue);margin-top:4px}
+.hint{font-size:12px;color:var(--muted);margin:12px 0 17px}
+.pay{display:block;text-align:center;text-decoration:none;background:linear-gradient(135deg,#e5f0ff,#9dbce6);color:#07101b;border-radius:11px;padding:13px;font-size:13px;font-weight:1000;letter-spacing:.6px}
+.cancel{width:100%;margin-top:9px;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:10px;padding:10px;font-weight:800;cursor:pointer}
+@media(max-width:520px){.wrap{padding:10px 10px 30px}.grid{grid-template-columns:1fr}.card{min-height:unset}.brand{letter-spacing:1.5px}header{padding:24px 10px}.nav a{padding:8px 10px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header>
+  <div class="brandmark">NV</div>
+  <h1 class="brand">nVinhx <span>Store</span></h1>
+  <p class="subtitle">AIMLOCK NOVA • PREMIUM GAMING STORE</p>
+  <div class="tagline">CHUẨN AIM GẦN NHẤT TỪNG FRAME • SIÊU MƯỢT • SIÊU ỔN ĐỊNH</div>
+</header>
+<nav class="nav">
+  <a href="#aimlock">AIMLOCK NOVA</a><a href="#dpi">DPI</a><a href="#features">TÍNH NĂNG LẺ</a><a href="#training">ĐÀO TẠO</a><a href="#ios">AIM iOS</a>
+</nav>
+
+<section class="section" id="aimlock">
+<h2 class="section-title">I. Aimlock Nova</h2>
+<div class="grid">
+  <article class="card"><div class="cardtop"><div><span class="badge">VERSION 01</span><div class="name">Aimlock NOVA V1</div></div><div class="price">20.000 VNĐ</div></div><button class="choose" data-name="Aimlock NOVA V1" data-price="20.000 VNĐ">CHỌN FILE / THANH TOÁN ↗</button></article>
+  <article class="card"><div class="cardtop"><div><span class="badge">VERSION 02</span><div class="name">Aimlock NOVA V2</div></div><div class="price">30.000 VNĐ</div></div><button class="choose" data-name="Aimlock NOVA V2" data-price="30.000 VNĐ">CHỌN FILE / THANH TOÁN ↗</button></article>
+  <article class="card"><div class="cardtop"><div><span class="badge">VERSION 03</span><div class="name">Aimlock NOVA V3</div></div><div class="price">50.000 VNĐ</div></div><button class="choose" data-name="Aimlock NOVA V3" data-price="50.000 VNĐ">CHỌN FILE / THANH TOÁN ↗</button></article>
+  <article class="card"><div class="cardtop"><div><span class="badge">VERSION 04</span><div class="name">Aimlock NOVA V4</div></div><div class="price">70.000 VNĐ</div></div><button class="choose" data-name="Aimlock NOVA V4" data-price="70.000 VNĐ">CHỌN FILE / THANH TOÁN ↗</button></article>
+  <article class="card"><div class="cardtop"><div><span class="badge">VERSION 05</span><div class="name">Aimlock NOVA V5</div></div><div class="price">100.000 VNĐ</div></div><button class="choose" data-name="Aimlock NOVA V5" data-price="100.000 VNĐ">CHỌN FILE / THANH TOÁN ↗</button></article>
+  <article class="card"><div class="cardtop"><div><span class="badge">VERSION 06</span><div class="name">Aimlock NOVA V6</div></div><div class="price">150.000 VNĐ</div></div><button class="choose" data-name="Aimlock NOVA V6" data-price="150.000 VNĐ">CHỌN FILE / THANH TOÁN ↗</button></article>
+  <article class="card"><div class="cardtop"><div><span class="badge">VERSION 07</span><div class="name">Aimlock NOVA V7</div><div class="desc">Đầm tâm</div></div><div class="price">200.000 VNĐ</div></div><button class="choose" data-name="Aimlock NOVA V7" data-price="200.000 VNĐ">CHỌN FILE / THANH TOÁN ↗</button></article>
+  <article class="card"><div class="cardtop"><div><span class="badge">VERSION 08</span><div class="name">Aimlock NOVA V8</div></div><div class="price">250.000 VNĐ</div></div><button class="choose" data-name="Aimlock NOVA V8" data-price="250.000 VNĐ">CHỌN FILE / THANH TOÁN ↗</button></article>
+  <article class="card"><div class="cardtop"><div><span class="badge">VERSION 09</span><div class="name">Aimlock NOVA V9</div></div><div class="price">300.000 VNĐ</div></div><button class="choose" data-name="Aimlock NOVA V9" data-price="300.000 VNĐ">CHỌN FILE / THANH TOÁN ↗</button></article>
+  <article class="card"><div class="cardtop"><div><span class="badge">VERSION 10</span><div class="name">Aimlock NOVA V10</div></div><div class="price">400.000 VNĐ</div></div><button class="choose" data-name="Aimlock NOVA V10" data-price="400.000 VNĐ">CHỌN FILE / THANH TOÁN ↗</button></article>
+  <article class="card"><div class="cardtop"><div><span class="badge">PREMIUM</span><div class="name">Aimlock NOVA Premium</div></div><div class="price">500.000 VNĐ</div></div><button class="choose" data-name="Aimlock NOVA Premium" data-price="500.000 VNĐ">CHỌN FILE / THANH TOÁN ↗</button></article>
+</div>
+</section>
+
+<section class="section" id="dpi"><h2 class="section-title">II. DPI iOS & ADR</h2><div class="grid">
+<article class="card"><div class="cardtop"><div><div class="name">DPI iOS & ADR</div><div class="desc">Áp dụng theo từng thiết bị</div></div><div class="price">50.000 VNĐ<small>/ 1 THIẾT BỊ</small></div></div><button class="choose" data-name="DPI iOS & ADR" data-price="50.000 VNĐ / 1 thiết bị">CHỌN DỊCH VỤ ↗</button></article>
+</div></section>
+
+<section class="section" id="features"><h2 class="section-title">III. Các tính năng lẻ</h2><div class="grid">
+<article class="card"><div class="cardtop"><div class="name">Nhẹ Tâm</div><div class="price">20.000 / 100.000 VNĐ<small>HAI MỨC GIÁ THEO DANH SÁCH</small></div></div><button class="choose" data-name="Nhẹ Tâm (xác nhận mức giá)" data-price="20.000 hoặc 100.000 VNĐ">CHỌN DỊCH VỤ ↗</button></article>
+<article class="card"><div class="cardtop"><div class="name">Bám Đầu</div><div class="price">50.000 / 100.000 VNĐ<small>HAI MỨC GIÁ THEO DANH SÁCH</small></div></div><button class="choose" data-name="Bám Đầu (xác nhận mức giá)" data-price="50.000 hoặc 100.000 VNĐ">CHỌN DỊCH VỤ ↗</button></article>
+<article class="card"><div class="cardtop"><div class="name">+ Fix Rung</div><div class="price">100.000 / 120.000 VNĐ<small>HAI MỨC GIÁ THEO DANH SÁCH</small></div></div><button class="choose" data-name="Fix Rung (xác nhận mức giá)" data-price="100.000 hoặc 120.000 VNĐ">CHỌN DỊCH VỤ ↗</button></article>
+</div></section>
+
+<section class="section" id="training"><h2 class="section-title">IV. Nhận đào tạo học viên</h2><div class="grid">
+<article class="card"><div class="cardtop"><div class="name">Make Thường</div><div class="price">Từ 100.000 VNĐ</div></div><button class="choose" data-name="Đào tạo Make Thường" data-price="Từ 100.000 VNĐ">ĐĂNG KÝ / THANH TOÁN ↗</button></article>
+<article class="card"><div class="cardtop"><div class="name">Make Cơ Bản</div><div class="price">Từ 200.000 VNĐ</div></div><button class="choose" data-name="Đào tạo Make Cơ Bản" data-price="Từ 200.000 VNĐ">ĐĂNG KÝ / THANH TOÁN ↗</button></article>
+<article class="card"><div class="cardtop"><div class="name">Make Nâng Cao</div><div class="price">Từ 500.000 VNĐ</div></div><button class="choose" data-name="Đào tạo Make Nâng Cao" data-price="Từ 500.000 VNĐ">ĐĂNG KÝ / THANH TOÁN ↗</button></article>
+<article class="card"><div class="cardtop"><div class="name">Make Chuyên Sâu</div><div class="price">Từ 800.000 VNĐ</div></div><button class="choose" data-name="Đào tạo Make Chuyên Sâu" data-price="Từ 800.000 VNĐ">ĐĂNG KÝ / THANH TOÁN ↗</button></article>
+</div></section>
+
+<section class="section" id="ios"><h2 class="section-title">V. Aim iOS</h2><div class="subtitle" style="margin:0 0 12px">TỐI ƯU TỐC ĐỘ • KÉO TÂM CHUẨN XÁC</div><div class="grid">
+<article class="card"><div class="cardtop"><div class="name">AimHead</div><div class="price">50.000 VNĐ</div></div><button class="choose" data-name="Aim iOS — AimHead" data-price="50.000 VNĐ">CHỌN FILE ↗</button></article>
+<article class="card"><div class="cardtop"><div class="name">AimOBB</div><div class="price">40.000 VNĐ</div></div><button class="choose" data-name="Aim iOS — AimOBB" data-price="40.000 VNĐ">CHỌN FILE ↗</button></article>
+<article class="card"><div class="cardtop"><div class="name">AimMaGic</div><div class="price">40.000 VNĐ</div></div><button class="choose" data-name="Aim iOS — AimMaGic" data-price="40.000 VNĐ">CHỌN FILE ↗</button></article>
+<article class="card"><div class="cardtop"><div class="name">AimBody 80%</div><div class="price">50.000 VNĐ</div></div><button class="choose" data-name="Aim iOS — AimBody 80%" data-price="50.000 VNĐ">CHỌN FILE ↗</button></article>
+<article class="card"><div class="cardtop"><div class="name">AimHead + AntaNe</div><div class="price">60.000 VNĐ</div></div><button class="choose" data-name="Aim iOS — AimHead + AntaNe" data-price="60.000 VNĐ">CHỌN FILE ↗</button></article>
+<article class="card"><div class="cardtop"><div class="name">AimOBB + AntaNe</div><div class="price">50.000 VNĐ</div></div><button class="choose" data-name="Aim iOS — AimOBB + AntaNe" data-price="50.000 VNĐ">CHỌN FILE ↗</button></article>
+<article class="card"><div class="cardtop"><div class="name">AimMaGic + AntaNe</div><div class="price">50.000 VNĐ</div></div><button class="choose" data-name="Aim iOS — AimMaGic + AntaNe" data-price="50.000 VNĐ">CHỌN FILE ↗</button></article>
+<article class="card"><div class="cardtop"><div class="name">AimNeck</div><div class="price">70.000 VNĐ</div></div><button class="choose" data-name="Aim iOS — AimNeck" data-price="70.000 VNĐ">CHỌN FILE ↗</button></article>
+</div></section>
+
+<div class="section callout">Chọn sản phẩm để xem thông tin đơn hàng, sau đó bấm <b>Thanh toán qua Zalo</b> để mở liên kết Zalo. Đây là bước liên hệ xác nhận thanh toán; website này chưa tự xác minh giao dịch hoặc tự giao file.</div>
+<footer><strong>nVinhx STORE</strong>AIMLOCK NOVA • PREMIUM GAMING STORE<br>Gọn gàng • Hiện đại • Đen bạc neon</footer>
+</main>
+
+<div class="overlay" id="paymentModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <div class="modal-head"><h2 id="modalTitle">Xác nhận sản phẩm</h2><button class="close" id="closeModal" aria-label="Đóng">×</button></div>
+    <div class="selected"><div class="product" id="selectedName">Sản phẩm</div><div class="amount" id="selectedPrice">0 VNĐ</div></div>
+    <p class="hint">Nhấn nút bên dưới để mở Zalo và liên hệ người bán xác nhận đơn hàng, giá và cách nhận file.</p>
+    <a class="pay" id="zaloLink" href="https://zalo.me/84357311213" target="_blank" rel="noopener noreferrer">THANH TOÁN / LIÊN HỆ QUA ZALO ↗</a>
+    <button class="cancel" id="cancelModal">Quay lại cửa hàng</button>
+  </div>
+</div>
+<script>
+const modal = document.getElementById('paymentModal');
+const selectedName = document.getElementById('selectedName');
+const selectedPrice = document.getElementById('selectedPrice');
+function closeModal(){ modal.classList.remove('show'); }
+document.querySelectorAll('.choose').forEach(button => {
+  button.addEventListener('click', () => {
+    selectedName.textContent = button.dataset.name || 'Sản phẩm';
+    selectedPrice.textContent = button.dataset.price || 'Liên hệ xác nhận';
+    modal.classList.add('show');
+  });
+});
+document.getElementById('closeModal').addEventListener('click', closeModal);
+document.getElementById('cancelModal').addEventListener('click', closeModal);
+modal.addEventListener('click', event => { if(event.target === modal) closeModal(); });
+document.addEventListener('keydown', event => { if(event.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
